@@ -12,9 +12,9 @@
 
 <p align="center">
   <b>
-    <a href="memory-allocation-gui-app/">Source Code</a>
+    <a href="memory-allocator-gui-app/">Source Code</a>
  - <a href="screenshots/">Screenshots</a>
- - <a href="os-memory-allocation-documentation.pdf">Documentation</a>
- - <a href="https://github.com/BoulaZa5/os-memory-allocation-gui-app/releases">Releases</a>
+ - <a href="os-memory-allocator-documentation.pdf">Documentation</a>
+ - <a href="https://github.com/BoulaZa5/os-memory-allocator-gui-app/releases">Releases</a>
   </b>
 </p>
