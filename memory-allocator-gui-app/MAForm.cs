@@ -101,6 +101,29 @@ namespace memory_allocation_gui_app
             }
         }
 
+        private void compactMemory()
+        {
+            int pc = processes.Count(), accumilatedAddresses = 0;
+            for (int i = 0, prevProcessEndAddress = 0, processSize = 0; i < pc; i++)
+            {
+                prevProcessEndAddress = processes[i].endAddress;
+                processSize = processes[i].endAddress - processes[i].startAddress;
+                process tempP = new process();
+                tempP.name = processes[i].name;
+                tempP.startAddress = accumilatedAddresses;
+                tempP.endAddress = accumilatedAddresses + processSize;
+                processes[i] = tempP;
+                accumilatedAddresses = processes[i].endAddress;
+            }
+            holes = new List<hole>();
+            hole tempH = new hole();
+            tempH.startAddress = accumilatedAddresses;
+            tempH.endAddress = memory_size;
+            holes.Add(tempH);
+            draw();
+            return;
+        }
+
         private int firstFit(int processSize)
         {
             int hc = holes.Count();
@@ -310,7 +333,7 @@ namespace memory_allocation_gui_app
                 if (name != "Hole")
                 {
                     lbl.Name = (iProcesses - 1).ToString();
-                    lbl.Click += (s, ea) => {
+                    lbl.DoubleClick += (s, ea) => {
                         Label temp = (Label)s;
                         removeProcess(Int32.Parse(temp.Name));
                     };
@@ -398,7 +421,9 @@ namespace memory_allocation_gui_app
                 worstFitRad.Enabled = true;
                 worstFitRad.Visible = true;
                 submitBtn.Text = "Reset";
-                submitBtn.Location = new Point(316, 90);
+                submitBtn.Location = new Point(235, 90);
+                compactBtn.Enabled = true;
+                compactBtn.Visible = true;
                 addBtn.Text = "Add Process";
                 addBtn.Location = new Point(397, 90);
 
@@ -458,7 +483,7 @@ namespace memory_allocation_gui_app
                                 processes.Add(newProcess2);
                             }
                         }
-                        else
+                        else if (i != 0)
                         {
                             process newProcess = new process();
                             newProcess.name = "Reserved " + i.ToString();
@@ -512,6 +537,10 @@ namespace memory_allocation_gui_app
                     MessageBox.Show("Please complete the required fields before trying to add a process.");
                 }
             }
+        }
+        private void compactBtn_Click(object sender, EventArgs e)
+        {
+            compactMemory();
         }
         private void outResizeBar_Scroll(object sender, EventArgs e)
         {

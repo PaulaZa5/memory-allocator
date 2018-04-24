@@ -47,6 +47,7 @@
             this.holeStartAddressLbl = new System.Windows.Forms.Label();
             this.memorySizeLbl = new System.Windows.Forms.Label();
             this.outputPnl = new System.Windows.Forms.Panel();
+            this.compactBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.outResizeBar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -261,11 +262,24 @@
             this.outputPnl.Size = new System.Drawing.Size(228, 437);
             this.outputPnl.TabIndex = 1;
             // 
+            // compactBtn
+            // 
+            this.compactBtn.Enabled = false;
+            this.compactBtn.Location = new System.Drawing.Point(316, 90);
+            this.compactBtn.Name = "compactBtn";
+            this.compactBtn.Size = new System.Drawing.Size(75, 23);
+            this.compactBtn.TabIndex = 18;
+            this.compactBtn.Text = "Compact";
+            this.compactBtn.UseVisualStyleBackColor = true;
+            this.compactBtn.Visible = false;
+            this.compactBtn.Click += new System.EventHandler(this.compactBtn_Click);
+            // 
             // memAllocator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(718, 461);
+            this.Controls.Add(this.compactBtn);
             this.Controls.Add(this.outResizeLbl);
             this.Controls.Add(this.outputPnl);
             this.Controls.Add(this.outResizeBar);
@@ -314,6 +328,7 @@
         private System.Windows.Forms.Label outResizeLbl;
         private System.Windows.Forms.TrackBar outResizeBar;
         private System.Windows.Forms.Panel outputPnl;
+        private System.Windows.Forms.Button compactBtn;
     }
 }
 
